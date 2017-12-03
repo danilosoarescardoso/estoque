@@ -2,12 +2,13 @@
 
     use Illuminate\Support\Facades\DB;
     use Request;
+    use estoque\Produto;
 
     class ProdutoController extends Controller {
 
         public function lista(){
             
-            $produtos = DB::select('select * from produtos');
+            $produtos = Produto::all();
 
             return view('produto.listagem')->with('produtos', $produtos);
 
@@ -29,15 +30,18 @@
 
         public function adiciona(){
 
-          $nome = Request::input('nome');
-          $valor = Request::input('valor');
-          $descricao = Request::input('descricao');
-          $quantidade = Request::input('quantidade');
+            $produto = new Produto();
 
-          DB::insert('insert into produtos values (null, ?, ?, ?, ?)', 
-            array($nome, $valor, $descricao, $quantidade));
+            $produto->nome = Request::input('nome');
+            $produto->valor = Request::input('valor');
+            $produto->descricao = Request::input('descricao');
+            $produto->quantidade = Request::input('quantidade');
 
-          return view('produto.adicionado')-> with('nome', $nome);
-    }
+            $produto->save(); 
+
+            return redirect()
+              ->action('ProdutoController@lista')
+              ->withInput(Request::only('nome'));
+        }
 
     }

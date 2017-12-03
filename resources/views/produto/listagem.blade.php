@@ -18,7 +18,7 @@
       <td> {{$p->quantidade}} </td>
       <td> 
         <a href="/produtos/mostra/{{$p->id}}">
-          <span class="glyphicon glyphicon-search"></span>
+          <span class="glyphicon glyphicon-open-file"></span>
         </a>
       </td>
     </tr>
@@ -31,5 +31,12 @@
     Um ou menos itens no estoque
   </span>
  </h4>
+
+ @if(old('nome'))
+  <div class="alert alert-success">
+    <strong>Sucesso!</strong> 
+        O produto {{ old('nome') }} foi adicionado.
+  </div>
+@endif
 
 @stop
