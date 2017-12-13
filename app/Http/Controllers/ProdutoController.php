@@ -24,20 +24,20 @@
             return view('produto.detalhes')->with('p', $resposta[0]);
         }
 
+        public function remove($id){
+            $produto = Produto::find($id);
+            $produto-> delete();
+            return redirect()->action('ProdutoController@lista');
+
+        }
+
         public function novo(){
           return view('produto.formulario');
         }
 
         public function adiciona(){
 
-            $produto = new Produto();
-
-            $produto->nome = Request::input('nome');
-            $produto->valor = Request::input('valor');
-            $produto->descricao = Request::input('descricao');
-            $produto->quantidade = Request::input('quantidade');
-
-            $produto->save(); 
+            Produto::create(Request::all());     
 
             return redirect()
               ->action('ProdutoController@lista')

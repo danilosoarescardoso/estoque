@@ -21,6 +21,11 @@
           <span class="glyphicon glyphicon-open-file"></span>
         </a>
       </td>
+      <td> 
+        <a href="/produtos/remov/e{{$p->id}}">
+          <span class="glyphicon glyphicon-trash"></span>
+        </a>
+      </td>
     </tr>
     @endforeach
   </table>
