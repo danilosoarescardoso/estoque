@@ -14,6 +14,7 @@
     <tr class="{{$p->quantidade<=1 ? 'danger' : '' }}">
       <td> {{$p->nome}} </td>
       <td> {{$p->valor}} </td>
+      <td> {{$p->tamanho}} </td>
       <td> {{$p->descricao}} </td>
       <td> {{$p->quantidade}} </td>
       <td> 
@@ -22,7 +23,7 @@
         </a>
       </td>
       <td> 
-        <a href="/produtos/remov/e{{$p->id}}">
+        <a href="/produtos/remove/{{$p->id}}">
           <span class="glyphicon glyphicon-trash"></span>
         </a>
       </td>
