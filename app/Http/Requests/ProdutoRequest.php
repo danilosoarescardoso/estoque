@@ -1,6 +1,5 @@
 <?php namespace estoque\Http\Requests;
 
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProdutoRequest extends FormRequest
@@ -15,7 +14,7 @@ class ProdutoRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:3',
-            'descricao' => 'required|max:255'
+            'descricao' => 'required|max:255',
             'valor' => 'required|numeric',
             'quantidade' => 'required|numeric',
             'tamanho' => 'required|max:100'
