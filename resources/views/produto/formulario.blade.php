@@ -2,15 +2,18 @@
 
 @section('conteudo')
 
-<div class="alert alert-danger">
-<ul>
-  @foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>
-  @endforeach
-</ul>
-</div>
 
 <h1>Novo produto</h1>
+
+@if (count($errors) > 0)
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 
 <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
@@ -23,6 +26,16 @@
   <div class="form-group">
     <label>Tamanho</label>
     <input name="tamanho" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label>Categoria</label>
+    <select name="categoria_id" class="form-control">
+      @foreach ($categorias as $c)
+      <option value="{{$c->id}}">{{$c->nome}}</option>
+      @endforeach
+
+  </select>
   </div>
 
   <div class="form-group">

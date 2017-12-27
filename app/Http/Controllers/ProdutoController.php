@@ -1,9 +1,9 @@
 <?php namespace estoque\Http\Controllers;
-
-    use Illuminate\Support\Facades\DB;
-    use estoque\Produto;
-    use Illuminate\Http\Request;
-    use estoque\Http\Requests\ProdutoRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use estoque\Produto;
+use estoque\Categoria;
+use estoque\Http\Requests\ProdutoRequest;
 
     class ProdutoController extends Controller {
 
@@ -33,7 +33,7 @@
             }
 
             public function novo(){
-              return view('produto.formulario');
+              return view('produto.formulario')->with('categorias', Categoria::all());
             }
 
             public function adiciona(ProdutoRequest $request){
@@ -41,8 +41,7 @@
                 Produto::create($request->all());
 
                 return redirect()
-                    ->action('ProdutoController@lista')
-                    ->withInput(Request::only('nome'));
+                    ->action('ProdutoController@lista');
             }
 
         }
